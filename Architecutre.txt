@@ -1,0 +1,136 @@
+Splunk Architecture ---
+
+
+Splunk Componenets ---
+1) Universal Forwarder ( UF ) -- Splunk Universal Forwarder Package 
+
+CLI --- ( Command Line Interface )
+
+
+-- Splunk Enterprise Package --- CLI + GUI 
+
+2) Heavy Forwarder ( HF )
+a) Parsing 
+
+this is Vinay
+this is Mayank 
+This is Ayan 
+
+
+this is Vinay
+
+this is Mayank 
+
+This is Ayan 
+
+------
+
+this is Vinay,he is from hyderabad,
+this is Mayank,he is from up,
+This is Ayan,he is from kolkata,
+
+
+this is Vinay
+
+he is from hyderabad
+
+this is Mayank
+
+he is from up
+
+This is Ayan
+
+he is from kolkata
+
+--- Masking --- 
+
+this is ayan and his acc no is 1313131
+this is vinay and his acc no is 98797890
+this is Mayank and his acc no is 92852589
+
+
+
+this is ayan and his acc no is xxx3131
+
+this is vinay and his acc no is xxx7890
+
+this is Mayank and his acc no is xxx2589
+
+
+b) Filtering 
+
+this is Vinay
+this is Mayank 
+This is Ayan 
+
+
+
+
+this is Vinay
+
+This is Ayan 
+
+
+3) Indexer ( IDX )
+
+Indexes ----
+
+windows 
+linux
+chrome 
+
+------- Metadata ---- 3 -- 
+ host -- ip address / host name of the application server 
+ source -- actual path of the data ( C:\Program Files\Chrome\a.txt | /tmp/app.json ) 
+ 
+ sourcetype -- C:\Program Files\Chrome\a.txt ----- chrome_txt
+               C:\Program Files\Chrome\xyz.txt
+			   
+			   
+			   C:\Program Files\Chrome\a.json ----- chrome_json
+			   C:\Program Files\Chrome\dd.json
+			   
+			   index=chrome sourcetype=chrome_json 
+
+
+4) Search Head ( SH )
+5) Deployment Server ( DS )
+
+6) License Master ( LM )
+a) License Stacking 
+
+5Gb + 10 GB = 15 GB + 100GB = 115 GB 
+
+b) License Pooling 
+Pool-A --- 90 GB --- Indexers 
+Pool-B --- 25 GB --- SH, DS 
+
+> 5 ---- in rolling period of 30 days 
+
+2Sep ---- 1 
+3 ----- 2
+8 ---  3 
+11 --- 4 
+15 --- 5 
+16 --- 6
+
+2nd Oct 
+
+<6.5 ---- Enfocement Licnese ---- Indexing Continues ---- Searching Blocks 
+>= 6.5 ---- No-Enfocement License ---- Indexing Continues --- Searching Continues --- Splunk Legal action against your organization 
+
+
+------------------------
+
+License Master Goes Down ------ 
+
+72 hours it can work as it is ---- Indexing Continues ---- Searching Blocks 
+
+
+
+License Expires ----
+Indexing Continues ---- Searching Blocks 
+
+
+
+
