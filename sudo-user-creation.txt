@@ -26,3 +26,14 @@ exit -- ESC :wq
 # chmod +x a.sh
 # ./a.sh 
 
+
+
+----------------------------------------------------- Now Connect the servers from your local machine ----------------
+Open cmd prompt 
+
+# ssh apadmin@<public_ip_of_the_server>
+
+
+Username --- apadmin
+Password --- redhat123# 
+
