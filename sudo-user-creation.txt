@@ -8,3 +8,21 @@ sudo usermod -aG wheel apadmin
 #sudo chmod +x /etc/rc.d/rc.local
 sudo sed -i "/^[^#]*PasswordAuthentication[[:space:]]no/c\PasswordAuthentication yes" /etc/ssh/sshd_config
 sudo service sshd restart
+
+
+
+
+---------------------------------------------- Create A Sudo User For The Servers -------------------------
+
+
+connect the server from the browser ----
+# vi a.sh 
+Press "i" for insert 
+<<< Copy the above lines and paste it >>>>
+CTRL + V 
+
+exit -- ESC :wq
+
+# chmod +x a.sh
+# ./a.sh 
+
