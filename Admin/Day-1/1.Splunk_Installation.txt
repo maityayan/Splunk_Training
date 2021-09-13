@@ -1,0 +1,60 @@
+Splunk Installation ----
+
+# sudo su - 
+redhat123#
+
+UF --
+---------------------------------
+
+# cd /opt
+# wget -O splunkforwarder-8.2.2-87344edfcdb4-Linux-x86_64.tgz 'https://d7wz6hmoaavd0.cloudfront.net/products/universalforwarder/releases/8.2.2/linux/splunkforwarder-8.2.2-87344edfcdb4-Linux-x86_64.tgz'
+# ls 
+splunkforwarder-8.2.2-87344edfcdb4-Linux-x86_64.tgz
+# tar -xvzf splunkforwarder-8.2.2-87344edfcdb4-Linux-x86_64.tgz
+# ls 
+splunkforwarder 
+
+Note: -- /opt/splunkforwarder --- $SPLUNK_HOME
+
+# cd splunkforwarder/bin	
+# ./splunk start --accept-license 
+
+
+ ----- 
+  Please enter an administrator username: admin
+  Please enter a new password: 12345678
+  Please confirm new password: 12345678
+  
+# ./splunk start|status|stop|restart 
+
+
+
+HF / IDX / SH --
+
+---------------------------------
+
+# cd /opt
+# wget -O splunk-8.2.2-87344edfcdb4-Linux-x86_64.tgz 'https://d7wz6hmoaavd0.cloudfront.net/products/splunk/releases/8.2.2/linux/splunk-8.2.2-87344edfcdb4-Linux-x86_64.tgz'
+# ls 
+splunk-8.2.2-87344edfcdb4-Linux-x86_64.tgz
+# tar -xvzf splunk-8.2.2-87344edfcdb4-Linux-x86_64.tgz
+# ls 
+splunk
+
+Note: -- /opt/splunk --- $SPLUNK_HOME
+
+# cd splunk/bin	
+# ./splunk start --accept-license 
+
+
+ ----- 
+  Please enter an administrator username: admin
+  Please enter a new password: 12345678
+  Please confirm new password: 12345678
+  
+# ./splunk start|status|stop|restart 
+
+
+  
+
+
