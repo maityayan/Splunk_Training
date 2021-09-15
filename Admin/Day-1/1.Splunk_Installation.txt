@@ -24,7 +24,7 @@ Note: -- /opt/splunkforwarder --- $SPLUNK_HOME
   Please enter an administrator username: admin
   Please enter a new password: 12345678
   Please confirm new password: 12345678
-  
+# ./splunk enable boot-start  
 # ./splunk start|status|stop|restart 
 
 
@@ -51,7 +51,7 @@ Note: -- /opt/splunk --- $SPLUNK_HOME
   Please enter an administrator username: admin
   Please enter a new password: 12345678
   Please confirm new password: 12345678
-  
+# ./splunk enable boot-start
 # ./splunk start|status|stop|restart 
 
 
