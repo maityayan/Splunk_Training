@@ -1,0 +1,83 @@
+------ Server Configuration -----
+UF ----
+
+Connect HF From UF --
+
+# cd /opt/splunkforwarder/bin
+# ./splunk add forward-server <ip_hf>:9997
+# ./splunk add forward-server 172.31.5.24:9997
+
+# cd /opt/splunkforwarder/etc/system/local
+
+# ls 
+outputs.conf 
+
+# cat outputs.conf
+
+--------------------------------------------------------------------------
+
+HF ---- 
+Enable 9997 port ---
+GUI -- 
+52.14.235.29:8000 >>>>> Settings >>> Forwarding & Receiving >>>> Configure Receiving >> New Receiving Port >>> put 9997 and save it 
+
+CLI --- 
+# cd /opt/splunk/bin
+# ./splunk enable listen 9997 
+
+Connect IDX From HF --
+
+# cd /opt/splunk/bin
+# ./splunk add forward-server <ip_idx>:9997
+# ./splunk add forward-server 172.31.34.215:9997
+
+# cd /opt/splunk/etc/system/local
+
+# ls 
+outputs.conf 
+
+# cat outputs.conf
+
+----------------------------------------------------------------------------------------
+
+IDX 
+
+Enable 9997 port ---
+GUI -- 
+18.118.211.223:8000 >>>>> Settings >>> Forwarding & Receiving >>>> Configure Receiving >> New Receiving Port >>> put 9997 and save it 
+
+CLI --- 
+# cd /opt/splunk/bin
+# ./splunk enable listen 9997 
+
+-------------------------------------------------------------------------------------
+
+SH ----
+Add IDX to SH 
+GUI ---
+18.188.216.25:8000 >>>>> Settings >>> Distributed Search >>> Search Peer >> New Search Peer 
+
+idx info ---- https://172.31.34.215:8089
+idx username --- admin
+idx username's password --- 12345678
+idx confirm username's password --- 12345678
+
+----------------------------------
+Restart Splunk -----
+
+SH >> IDX >> HF >> UF 
+
+---------------------------------------------------------
+For Validation 
+
+SH GUI ----
+
+Search and Reporting ---- 
+
+index=_internal 
+
+
+if you see 4 hosts then your setup is ok 
+
+
+
