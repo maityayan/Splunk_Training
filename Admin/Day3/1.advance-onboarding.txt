@@ -1,0 +1,48 @@
+
+UF ---
+
+/tmp 
+
+training 
+a.txt  ---- txtlog
+abcd.txt
+zz.txt 
+
+
+
+abc.json   ----- jsonlog 
+test.json 
+
+
+
+
+-- inputs.conf -----
+
+# cd /opt/splunkforwarder/etc/system/local
+
+# vi inputs.conf 
+
+[monitor://<path of the file>]
+sourcetype=<sourcetype_name>
+index=<index_name> 
+
+
+[monitor:///tmp/testing.txt]
+sourcetype=testlog
+index=test
+
+
+
+
+[monitor:///tmp/training/*.txt]
+sourcetype=txtlog
+index=test
+
+
+[monitor:///tmp/training/*.json]
+sourcetype=jsonlog
+index=test
+
+
+Restart Splunk 
+
