@@ -1,0 +1,65 @@
+--------- Parsing -------------
+
+HF -------
+
+----
+props.conf 
+
+--------
+# $SPLUNK_HOME/etc/system/local
+
+# cd /opt/splunk/etc/system/local
+
+# vi props.conf 
+
+[<sourcetype_name>]
+attribute=value 
+
+[host::<host_name>]
+
+[source::<host_name>]
+
+---------------------------------------------- SHOULD LINEMERGE-------------------------------
+SHOULD_LINEMERGE 
+
+this is ayan
+this is ali 
+this is vinay 
+this is mayank 
+
+
+# vi props.conf 
+
+[testlog]
+SHOULD_LINEMERGE=false
+
+this is ayan
+
+this is ali 
+
+this is vinay 
+
+this is mayank 
+
+---------------------------------------------------------------------LINE BREAKER------------------------------------------
+this is ayan,he lives in kolktata,
+this is raja,he lives in hyderabad,
+
+
+
+this is ayan
+
+he lives in kolktata
+
+this is raja
+
+he lives in hyderabad
+
+
+LINE_BREAKER=(,)
+
+
+
+LINE_BREAKER=([\r\n]+)
+
+
