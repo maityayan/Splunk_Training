@@ -1,0 +1,101 @@
+------ Masking ---------
+
+this is ayan and he lives in kolkata 
+this is raja and he lives in mumbai 
+this is vinay and he lives in hyderabad 
+
+-------
+Hard-Code masking 
+
+this is ayan and he lives in kolkata 
+
+this is raja and he lives in mumbai 
+
+this is Mayank and he lives in hyderabad 
+
+
+------------------
+
+HF -------
+
+----
+props.conf 
+
+--------
+# $SPLUNK_HOME/etc/system/local
+
+# cd /opt/splunk/etc/system/local
+
+# vi props.conf 
+
+[<sourcetype_name>]
+attribute=value 
+
+[host::<host_name>]
+
+[source::<host_name>]
+
+
+
+SEDCMD-<class_name>=s/<old_pattern>/<new_pattern>/g 
+
+SEDCMD-namemask=s/(?i)vinay/mayank/g
+
+----------------------------------------- Full masking -------------------------------
+
+this is ayan and his acc number is 1231441
+this is ali and his acc number is 0295702
+he is mayank and his acc number is 0252597
+this is vinay and his acc number is 2525252
+
+(\w+\s+.*\s+)(\d+)
+   1           2     
+
+
+Regular Expression -----
+
+\w - character 
+\s - space 
+\d - digit 
+? - 0 or 1 occurance
++ - 1 or more occurance
+.* - All / everyting 
+
+
+SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d+)/\1xxxx/g
+
+
+
+this is ayan and his acc number is xxxx
+
+this is ali and his acc number is xxxx
+
+he is mayank and his acc number is xxxx
+
+this is mayank and his acc number is xxxx
+
+
+----------------------------------- Partial Masking ---------------------------------
+
+this is ayan and his acc number is 1231441
+this is ali and his acc number is 0295702
+he is mayank and his acc number is 0252597
+this is vinay and his acc number is 2525252
+
+(\w+\s+.*\s+)(\d\d\d\d)(\d+)
+1               2        3 
+
+
+
+SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d\d\d\d)(\d+)/\1xxxx\3/g
+
+
+
+this is ayan and his acc number is xxxx441
+
+this is ali and his acc number is xxxx702
+
+he is mayank and his acc number is xxxx597
+
+
+
