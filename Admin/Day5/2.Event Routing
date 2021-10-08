@@ -1,0 +1,43 @@
+----------------- Event Routing ----------
+
+this is ayan he is from kolkata 
+this is mayank and he is from delhi 
+kolkata is a big city 
+this is vinay he is from mumbai 
+Delhi is the capital of our coutry 
+ayan stayed in kolkata as well as in delhi
+mayank stayed in delhi as well as in kolkata 
+
+
+------------IDX ---
+
+create two index on the indexer  as "kol" and "del"
+
+
+--------------
+
+HF >>>>>
+
+props.conf 
+
+[testlog]
+SHOULD_LINEMERGE=false
+#LINE_BREAKER=(,)
+#SEDCMD-namemask=s/(?i)vinay/mayank/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d+)/\1xxxx/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d\d\d\d)(\d+)/\1xxxx\3/g
+#TRANSFORMS-filter=one,two
+TRANSFORMS-route=kolkatadata,delhidata
+
+
+transforms.conf 
+
+[kolkatadata]  ---- transformation name 
+REGEX=(?i)kolkata  ----- regular expression
+DEST_KEY=_MetaData:Index
+FORMAT=kol  ------------- index name 
+
+[delhidata]
+REGEX=(?i)delhi
+DEST_KEY=_MetaData:Index
+FORMAT=del
