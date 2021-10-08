@@ -1,0 +1,101 @@
+----------- Filtering ---------
+
+HF -------
+
+----
+props.conf 
+
+--------
+# $SPLUNK_HOME/etc/system/local
+
+# cd /opt/splunk/etc/system/local
+
+transforms.conf 
+
+[<tranformation_name>]
+attribute=value 
+
+
+
+props.conf 
+[<sourcetype_name>]
+TRANSFORMS-<class_name>=transformation_name1,tranformation_name2,........
+
+
+
+
+
+--------------------
+this is ali 
+this is mayank 
+Ali didn't join today 
+this is vinay 
+
+-------
+
+this is ali 
+
+Ali didn't join today 
+
+
+props.conf 
+
+[testlog]
+SHOULD_LINEMERGE=false
+#LINE_BREAKER=(,)
+#SEDCMD-namemask=s/(?i)vinay/mayank/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d+)/\1xxxx/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d\d\d\d)(\d+)/\1xxxx\3/g
+TRANSFORMS-filter=one,two
+
+
+transforms.conf 
+
+[one]
+REGEX=.
+DEST_KEY=queue
+FORMAT=nullQueue
+
+[two]
+REGEX=(?i)ali
+DEST_KEY=queue
+FORMAT=indexQueue
+
+------------------------------------------------------------------------
+
+
+this is ali 
+this is mayank 
+Ali didn't join today 
+this is vinay 
+
+-------
+
+ 
+this is mayank 
+ 
+this is vinay 
+
+
+props.conf 
+
+[testlog]
+SHOULD_LINEMERGE=false
+#LINE_BREAKER=(,)
+#SEDCMD-namemask=s/(?i)vinay/mayank/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d+)/\1xxxx/g
+#SEDCMD-numbermask=s/(\w+\s+.*\s+)(\d\d\d\d)(\d+)/\1xxxx\3/g
+#TRANSFORMS-filter=one,two
+TRANSFORMS-new=one 
+
+
+transforms.conf 
+
+[one]
+REGEX=(?i)ali
+DEST_KEY=queue
+FORMAT=nullQueue
+
+
+
+
