@@ -1,0 +1,104 @@
+DS >>>>
+# cd /opt/splunk/bin
+# ./splunk enable deploy-server 
+
+
+DC >>>>
+
+UF/HF/IDX 
+
+# cd $SPLUNK_HOME/bin
+# ./splunk set deploy-poll https://<ip_of_ds>:8089
+# ./splunk set deploy-poll https://172.31.8.76:8089
+
+# cd $SPLUNK_HOME/etc/system/local 
+
+# ls 
+deploymentclient.conf 
+
+
+----------------------
+DS >> GUI 
+# Settings >>> Forwarder Management 
+
+---------------------
+# cd /opt/splunk/etc/deployment-apps 
+             ------------------------ <app_name> 
+			                              ---- local 
+										         ------ .conf 
+												 
+												 
+-----------------------------------------------  Onboard Data from the UF -------------------------
+
+/tmp/ds/
+.txt 
+--------------------------------- App Creation ----------------
+
+ # cd /opt/splunk/etc/deployment-apps 
+# mkdir ufinput 
+# cd ufinput
+# mkdir local 
+# cd local
+# vi inputs.conf 
+
+[monitor:///tmp/ds/*.txt]
+index=test 
+sourcetype=dslog 
+
+------------------------------------------------ Serverclass Creation -----------------------
+
+
+# cd /opt/splunk/etc/system/local
+
+# vi serverclass.conf 
+
+
+[serverClass:<group_name>]
+whitelist.0=<hostname_of_dc>
+
+
+
+[serverClass:<group_name>:app:<app_name>]
+restartSplunkd=1
+restartSplunkWeb=0
+
+
+[serverClass:alluf]
+whitelist.0=172.31.36.56
+
+
+
+
+[serverClass:alluf:app:ufinput]
+restartSplunkd=1
+restartSplunkWeb=0
+
+
+
+
+
+whitelist.1=172.31.36.59
+
+
+whitelist.0=172.31.36.*
+blacklist.0=172.31.36.3
+blacklist.1=172.31.36.4
+
+
+---------------------------------- Deploy App --------------------
+
+# cd /opt/splunk/bin
+# ./splunk reload deploy-server 
+
+
+---------------------------------------------------
+
+Config will go to the 
+# cd $SPLUNK_HOME/etc/apps 
+
+
+
+---------------------------------------------------------------- HF --------------
+[dslog]
+SHOULD_LINEMERGE=false 
+
